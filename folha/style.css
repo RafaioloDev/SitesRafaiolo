@@ -1,0 +1,417 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --laranja-lucky: #e24b00; 
+    --laranja-l2: #ce7c40;
+    --marron: #4c2b1c;
+    --branco: #ebe0ce;
+    --marron-escuro : #261410;
+    --branco2: #fff;
+    --laranja3: #ae653b;
+    --preto: #000;
+    --marron2: #673a21; 
+}
+/* ================================================
+   RESET GERAL
+   Zera padding e margin de todos os elementos
+   para ter controle total do layout
+================================================ */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* NOVO: faz width/height incluir padding e border */
+}
+
+/* ================================================
+   VARIÁVEIS DE COR (CSS Custom Properties)
+   Use var(--nome) em qualquer lugar do CSS.
+   Para mudar uma cor, mude só aqui!
+================================================ */
+:root {
+    --laranja-lucky:   #e24b00;
+    --laranja-l2:      #ce7c40;
+    --marron:          #4c2b1c;
+    --branco:          #ebe0ce;
+    --marron-escuro:   #261410;
+    --branco2:         #fff;
+    --laranja3:        #ae653b;
+    --preto:           #000;
+    --marron2:         #673a21;
+}
+
+/* ================================================
+   BODY — configurações gerais da página
+================================================ */
+body {
+    background-color: var(--laranja3);
+    padding-top: 100px; /* empurra o conteúdo pra baixo do nav fixo */
+    background-image: linear-gradient(to bottom, var(--laranja3), var(--marron2));
+    min-height: 100vh;
+    background-attachment: fixed;
+    color: var(--branco2);
+    font-size: 20px;
+}
+
+/* ================================================
+   SCROLL
+   scroll-behavior: smooth → links âncora rolam
+   suavemente em vez de pular
+   :target → quando a âncora é ativada, dá um
+   espaço de 100px no topo (pro nav não cobrir)
+================================================ */
+html {
+    scroll-behavior: smooth;
+}
+:target {
+    scroll-margin-top: 100px;
+}
+
+/* ================================================
+   ELEMENTOS GERAIS
+================================================ */
+hr {
+    border: none;
+    height: 2px;
+    background-color: var(--preto);
+    width: 100%;
+    margin: 30px 0;
+}
+p {
+    text-align: center;
+}
+.container {
+    padding: 1px 3%; /* adicionei mais padding lateral */
+}
+.subtitulo {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ================================================
+   NAV — barra de navegação fixa no topo
+   position: fixed → gruda no topo mesmo ao rolar
+   z-index: 100 → fica na frente de tudo
+================================================ */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column; /* ← empilha em vez de lado a lado */
+    align-items: center;    /* ← centraliza tudo */
+    padding: 12px 24px;
+    background-color: var(--marron-escuro);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    align-items: center;
+    margin-top: 6px; /* ← espaçinho entre o título e os links */
+}
+/* Efeito de sublinhado que cresce ao passar o mouse */
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 4px;
+    background-color: var(--branco2);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 1s;
+}
+nav ul li a:hover::after {
+    width: 100%;
+}
+nav ul li a {
+    color: var(--branco2);
+    text-decoration: none;
+    font-size: 20px;
+    position: relative;
+    padding: 20px;
+}
+/* Ícone de hambúrguer — escondido no desktop, aparece no mobile */
+nav .fa-solid {
+    display: none;
+}
+/* ================================================
+   SEÇÃO BOAS-VINDAS (cabeçalho)
+================================================ */
+.texto-cabecalho {
+    font-size: 30px;
+    text-align: center;
+    padding: 20px 0;
+}
+.texto-cabecalho h1 {
+    font-size: 60px;
+    margin-top: 20px;
+}
+.caixa-comm {
+    background-color: var(--marron-escuro);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    color: var(--branco2);
+    display: inline-block;
+    margin-top: 10px;
+}
+/* ================================================
+   GALERIA — SWIPER CARROSSEL
+   
+   .galeria-swiper → container principal do Swiper
+   .swiper-slide   → cada slide individual
+   .quadro-arte    → card visual dentro do slide
+   
+   overflow: hidden no container é OBRIGATÓRIO pro
+   Swiper funcionar — esconde os slides fora da tela
+================================================ */
+.galeria-swiper {
+    width: 100%;
+    padding: 20px 10px 50px; /* padding-bottom pra não cortar a paginação */
+    overflow: hidden;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+.quadro-arte {
+    background-color: var(--marron-escuro);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    /* FIX: box-shadow agora tem os valores corretos:
+       offset-x | offset-y | blur | cor */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.quadro-arte:hover {
+    transform: scale(1.03);
+}
+.quadro-arte img {
+    max-width: 100%;
+    height: 280px;          /* altura fixa para uniformidade */
+    object-fit: cover;      /* corta a imagem para preencher sem distorcer */
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--marron);
+}
+
+/* Rodapé do card com nome e tipo da arte */
+.arte-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px 4px 0;
+}
+.arte-titulo {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--branco);
+}
+.arte-tipo {
+    font-size: 13px;
+    color: var(--laranja-l2);
+    font-style: italic;
+}
+
+/* Cores das setas e paginação do Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--branco2);
+}
+.swiper-pagination-bullet {
+    background: var(--branco);
+    opacity: 0.6;
+}
+.swiper-pagination-bullet-active {
+    background: var(--branco2);
+    opacity: 1;
+}
+
+/* ================================================
+   TERMOS DE SERVIÇO
+   
+   FIX: .quadro-termos ul li:hover não troca mais
+   display (evita o "salto" visual).
+   O transition agora está no estado normal para
+   a animação ser suave tanto ao entrar quanto sair.
+================================================ */
+.quadro-termos {
+    background-color: var(--marron-escuro);
+    border-radius: 10px;
+    color: var(--branco2);
+    padding: 10px 20px;
+}
+.quadro-termos ul li {
+    list-style: none;
+    margin: 29px 20px;
+    padding: 5px;
+    transition: transform 0.3s ease; /* transição no estado normal */
+}
+.quadro-termos ul li:hover {
+    transform: translateY(-6px);
+}
+
+/* ================================================
+   PREÇOS
+================================================ */
+.col {
+    text-align: center;
+    padding: 5px;
+}
+.conteudo-flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+.conteudo-flex ul {
+    flex: 1;
+    max-width: 400px;
+    text-align: left;
+}
+.conteudo-flex li {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px dashed var(--marron);
+    list-style: none;
+}
+.quadro-precos {
+    background-color: var(--marron-escuro);
+    border-radius: 10px;
+    color: var(--branco2);
+    padding: 20px;
+}
+.pagamento ul li {
+    list-style: none;
+    margin: 8px 0;
+}
+.borda-preta {
+    width: 90%;
+    padding: 16px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 6px solid var(--marron-escuro);
+}
+
+/* ================================================
+   IMAGEM DE EXEMPLO (miniaturas nas tabelas)
+================================================ */
+.miniatura {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 8px;
+    border: 5px solid var(--marron);
+    display: block;
+    margin: 0 auto;
+}
+
+/* ================================================
+   CONTATOS — ícones de redes sociais
+================================================ */
+.social-icon {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    width: 100%;
+}
+.social-icon a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--branco2);
+    transition: transform 0.3s ease; /* transição no estado normal */
+}
+.social-icon i {
+    font-size: 2.5rem;
+    display: block;
+}
+.social-icon a:hover i {
+    transform: translateY(-10px);
+}
+
+/* ================================================
+   RESPONSIVIDADE — telas menores que 600px
+   
+   @media only screen and (max-width: 600px)
+   significa: "aplique esses estilos SOMENTE em
+   telas com largura máxima de 600px" (celulares)
+================================================ */
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .texto-cabecalho {
+        margin-top: 30%;
+        font-size: 14px; /* FIX: adicionada unidade px */
+    }
+
+    /* FIX: seletor corrigido — era nav i .fa-solid .fa-bars (errado) */
+    nav .fa-bars {
+        cursor: pointer;
+    }
+
+    /* Ícone hambúrguer aparece no mobile */
+    nav .fa-solid {
+        display: block;
+        font-size: 25px; /* FIX: adicionada unidade px */
+        cursor: pointer;
+        color: var(--branco2);
+    }
+    /* Menu deslizante: começa fora da tela (right: -900px)
+       e desliza pra dentro quando abrirmenu() é chamado */
+    nav ul {
+        background-color: var(--marron-escuro);
+        position: fixed;
+        top: 0;
+        right: -900px;
+        width: 250px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 100;
+        transition: right 0.5s;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav ul li {
+        display: block;
+        margin: 25px;
+    }
+    /* Ícone de fechar (X) dentro do menu */
+    nav ul .fa-solid {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+    .subtitulo {
+        font-size: 22px;
+    }
+    .miniatura {
+        width: 100%;
+        max-width: 250px;
+    }
+    .quadro-arte img {
+        height: 200px;
+    }
+}
+
