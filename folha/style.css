@@ -1,19 +1,4 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-:root {
-    --laranja-lucky: #e24b00; 
-    --laranja-l2: #ce7c40;
-    --marron: #4c2b1c;
-    --branco: #ebe0ce;
-    --marron-escuro : #261410;
-    --branco2: #fff;
-    --laranja3: #ae653b;
-    --preto: #000;
-    --marron2: #673a21; 
-}
+
 /* ================================================
    RESET GERAL
    Zera padding e margin de todos os elementos
@@ -135,7 +120,6 @@ nav ul li a {
     text-decoration: none;
     font-size: 20px;
     position: relative;
-    padding: 20px;
 }
 /* Ícone de hambúrguer — escondido no desktop, aparece no mobile */
 nav .fa-solid {
@@ -174,11 +158,11 @@ nav .fa-solid {
    Swiper funcionar — esconde os slides fora da tela
 ================================================ */
 .galeria-swiper {
-    width: 100%;
-    padding: 20px 10px 50px; /* padding-bottom pra não cortar a paginação */
+    max-width: 1600px;
+    margin: 0 auto;        /* ← centraliza */
+    padding: 20px 40px 50px; /* ← padding lateral pras setas não sobreporem */
     overflow: hidden;
-}
-
+}   
 .swiper-slide {
     display: flex;
     justify-content: center;
@@ -187,26 +171,25 @@ nav .fa-solid {
     background-color: var(--marron-escuro);
     padding: 10px;
     border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-    /* FIX: box-shadow agora tem os valores corretos:
-       offset-x | offset-y | blur | cor */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     transition: transform 0.5s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 50px;
+    width: 100%;
+}
+
+.quadro-arte img {
+    width: 100%;
+    height: 350px;         /* ← altura fixa igual pra todas */
+    object-fit: contain;   /* ← mostra a imagem inteira sem cortar */
+    background-color: var(--marron-escuro); /* ← preenche o espaço vazio */
+    border-radius: 8px;
+    display: block;
 }
 .quadro-arte:hover {
     transform: scale(1.03);
-}
-.quadro-arte img {
-    max-width: 100%;
-    height: 280px;          /* altura fixa para uniformidade */
-    object-fit: cover;      /* corta a imagem para preencher sem distorcer */
-    border-radius: 8px;
-    box-shadow: 0 0 10px var(--marron);
 }
 
 /* Rodapé do card com nome e tipo da arte */
@@ -230,14 +213,14 @@ nav .fa-solid {
 /* Cores das setas e paginação do Swiper */
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--branco2);
+    color: var(--branco);
 }
 .swiper-pagination-bullet {
     background: var(--branco);
     opacity: 0.6;
 }
 .swiper-pagination-bullet-active {
-    background: var(--branco2);
+    background: var(--branco);
     opacity: 1;
 }
 
@@ -359,12 +342,6 @@ nav .fa-solid {
     h1 {
         font-size: 20px;
     }
-
-    .texto-cabecalho {
-        margin-top: 30%;
-        font-size: 14px; /* FIX: adicionada unidade px */
-    }
-
     /* FIX: seletor corrigido — era nav i .fa-solid .fa-bars (errado) */
     nav .fa-bars {
         cursor: pointer;
@@ -384,7 +361,6 @@ nav .fa-solid {
         position: fixed;
         top: 0;
         right: -900px;
-        width: 250px;
         height: 100vh;
         padding-top: 50px;
         z-index: 100;
