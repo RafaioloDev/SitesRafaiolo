@@ -329,7 +329,118 @@ nav .fa-solid {
 .social-icon a:hover i {
     transform: translateY(-10px);
 }
+/* ================================
+   FLIP CARDS
+================================ */
 
+/* container dos 3 cards lado a lado */
+.flip-cards-grid {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+.flip-card {
+    width: 500px;
+    aspect-ratio: 4/3;  /* ← altura calculada automaticamente */
+    height: auto;        /* ← remove a altura fixa */
+    perspective: 1000px;
+    flex-shrink: 0;
+}
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+/* ao passar o mouse, gira 180 graus */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* frente e verso — posicionados um em cima do outro */
+.flip-card-frente,
+.flip-card-verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden; /* ← esconde o lado de trás quando virado */
+    overflow: hidden;
+}
+
+/* FRENTE */
+.flip-card-frente {
+    background-color: var(--marron-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border: 2px solid var(--marron);
+}
+.flip-card-frente img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.flip-label {
+    position: relative; /* ← fica na frente da imagem */
+    z-index: 1;
+    background: rgba(38, 20, 16, 0.85);
+    color: var(--branco2);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* VERSO */
+.flip-card-verso {
+    background-color: var(--marron-escuro);
+    border: 2px solid var(--laranja-lucky);
+    transform: rotateY(180deg); /* ← começa virado, aparece quando o card gira */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    gap: 12px;
+}
+.flip-card-verso h2 {
+    font-size: 1.2rem;
+    color: var(--branco2);
+}
+.flip-card-verso ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.flip-card-verso ul li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--branco2);
+    border-bottom: 1px dashed var(--marron);
+    padding-bottom: 4px;
+}
+.flip-card-verso ul li span {
+    color: var(--branco);
+    font-weight: bold;
+}
+.flip-obs {
+    font-size: 0.75rem;
+    color: var(--branco);
+    opacity: 0.7;
+    text-align: center;
+}
 /* ================================================
    RESPONSIVIDADE — telas menores que 600px
    
@@ -388,6 +499,16 @@ nav .fa-solid {
     }
     .quadro-arte img {
         height: 200px;
+    }
+    .flip-cards-grid {
+        flex-direction: column; /* ← empilha no celular */
+        align-items: center;
+    }
+    .flip-card {
+        width: 90%;
+        max-width: 340px;
+        aspect-ratio: 16/9; /* ← mantém a proporção no celular também */
+        height: auto;
     }
 }
 
