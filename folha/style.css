@@ -185,7 +185,7 @@ nav .fa-solid {
 /* setas e bolinhas do Swiper */
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--branco);
+    color: var(--branco) !important;
 }
 .swiper-pagination-bullet {
     background: var(--branco);
