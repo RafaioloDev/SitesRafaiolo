@@ -1,18 +1,13 @@
-
 /* ================================================
    RESET GERAL
-   Zera padding e margin de todos os elementos
-   para ter controle total do layout
 ================================================ */
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /* NOVO: faz width/height incluir padding e border */
+    box-sizing: border-box;
 }
-
 /* ================================================
-   VARIÁVEIS DE COR (CSS Custom Properties)
-   Use var(--nome) em qualquer lugar do CSS.
+   VARIÁVEIS DE COR
    Para mudar uma cor, mude só aqui!
 ================================================ */
 :root {
@@ -26,26 +21,8 @@
     --preto:           #000;
     --marron2:         #673a21;
 }
-
 /* ================================================
-   BODY — configurações gerais da página
-================================================ */
-body {
-    background-color: var(--laranja3);
-    padding-top: 100px; /* empurra o conteúdo pra baixo do nav fixo */
-    background-image: linear-gradient(to bottom, var(--laranja3), var(--marron2));
-    min-height: 100vh;
-    background-attachment: fixed;
-    color: var(--branco2);
-    font-size: 20px;
-}
-
-/* ================================================
-   SCROLL
-   scroll-behavior: smooth → links âncora rolam
-   suavemente em vez de pular
-   :target → quando a âncora é ativada, dá um
-   espaço de 100px no topo (pro nav não cobrir)
+   HTML & BODY
 ================================================ */
 html {
     scroll-behavior: smooth;
@@ -53,7 +30,15 @@ html {
 :target {
     scroll-margin-top: 100px;
 }
-
+body {
+    background-color: var(--laranja3);
+    background-image: linear-gradient(to bottom, var(--laranja3), var(--marron2));
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-top: 100px;
+    color: var(--branco2);
+    font-size: 20px;
+}
 /* ================================================
    ELEMENTOS GERAIS
 ================================================ */
@@ -68,16 +53,14 @@ p {
     text-align: center;
 }
 .container {
-    padding: 1px 3%; /* adicionei mais padding lateral */
+    padding: 1px 3%;
 }
 .subtitulo {
     text-align: center;
     font-weight: bold;
-    text-decoration: none;
 }
-
 /* ================================================
-   NAV — barra de navegação fixa no topo
+   NAV
    position: fixed → gruda no topo mesmo ao rolar
    z-index: 100 → fica na frente de tudo
 ================================================ */
@@ -88,20 +71,25 @@ nav {
     right: 0;
     z-index: 100;
     display: flex;
-    flex-direction: column; /* ← empilha em vez de lado a lado */
-    align-items: center;    /* ← centraliza tudo */
+    flex-direction: column;
+    align-items: center;
     padding: 12px 24px;
     background-color: var(--marron-escuro);
 }
-
 nav ul {
     display: flex;
     list-style: none;
     gap: 24px;
     align-items: center;
-    margin-top: 6px; /* ← espaçinho entre o título e os links */
+    margin-top: 6px;
 }
-/* Efeito de sublinhado que cresce ao passar o mouse */
+nav ul li a {
+    color: var(--branco2);
+    text-decoration: none;
+    font-size: 20px;
+    position: relative;
+}
+/* sublinhado que cresce no hover */
 nav ul li a::after {
     content: '';
     width: 0;
@@ -110,23 +98,17 @@ nav ul li a::after {
     position: absolute;
     left: 0;
     bottom: -6px;
-    transition: 1s;
+    transition: width 0.3s ease;
 }
 nav ul li a:hover::after {
     width: 100%;
 }
-nav ul li a {
-    color: var(--branco2);
-    text-decoration: none;
-    font-size: 20px;
-    position: relative;
-}
-/* Ícone de hambúrguer — escondido no desktop, aparece no mobile */
+/* ícone hambúrguer — escondido no desktop */
 nav .fa-solid {
     display: none;
 }
 /* ================================================
-   SEÇÃO BOAS-VINDAS (cabeçalho)
+   CABEÇALHO
 ================================================ */
 .texto-cabecalho {
     font-size: 30px;
@@ -141,28 +123,21 @@ nav .fa-solid {
     background-color: var(--marron-escuro);
     padding: 10px;
     border-radius: 10px;
-    text-align: center;
     font-size: 20px;
     color: var(--branco2);
     display: inline-block;
     margin-top: 10px;
 }
 /* ================================================
-   GALERIA — SWIPER CARROSSEL
-   
-   .galeria-swiper → container principal do Swiper
-   .swiper-slide   → cada slide individual
-   .quadro-arte    → card visual dentro do slide
-   
-   overflow: hidden no container é OBRIGATÓRIO pro
-   Swiper funcionar — esconde os slides fora da tela
+   GALERIA — SWIPER
+   overflow: hidden é OBRIGATÓRIO pro Swiper
 ================================================ */
 .galeria-swiper {
     max-width: 1600px;
-    margin: 0 auto;        /* ← centraliza */
-    padding: 20px 40px 50px; /* ← padding lateral pras setas não sobreporem */
+    margin: 0 auto;
+    padding: 20px 40px 50px;
     overflow: hidden;
-}   
+}
 .swiper-slide {
     display: flex;
     justify-content: center;
@@ -176,23 +151,21 @@ nav .fa-solid {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 8px; /* era 50px — causava espaço gigante */
     width: 100%;
-}
-
-.quadro-arte img {
-    width: 100%;
-    height: 350px;         /* ← altura fixa igual pra todas */
-    object-fit: contain;   /* ← mostra a imagem inteira sem cortar */
-    background-color: var(--marron-escuro); /* ← preenche o espaço vazio */
-    border-radius: 8px;
-    display: block;
 }
 .quadro-arte:hover {
     transform: scale(1.03);
 }
-
-/* Rodapé do card com nome e tipo da arte */
+.quadro-arte img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    background-color: var(--marron-escuro);
+    border-radius: 8px;
+    display: block;
+}
+/* rodapé do card */
 .arte-info {
     display: flex;
     justify-content: space-between;
@@ -209,8 +182,7 @@ nav .fa-solid {
     color: var(--laranja-l2);
     font-style: italic;
 }
-
-/* Cores das setas e paginação do Swiper */
+/* setas e bolinhas do Swiper */
 .swiper-button-next,
 .swiper-button-prev {
     color: var(--branco);
@@ -223,14 +195,8 @@ nav .fa-solid {
     background: var(--branco);
     opacity: 1;
 }
-
 /* ================================================
    TERMOS DE SERVIÇO
-   
-   FIX: .quadro-termos ul li:hover não troca mais
-   display (evita o "salto" visual).
-   O transition agora está no estado normal para
-   a animação ser suave tanto ao entrar quanto sair.
 ================================================ */
 .quadro-termos {
     background-color: var(--marron-escuro);
@@ -242,12 +208,11 @@ nav .fa-solid {
     list-style: none;
     margin: 29px 20px;
     padding: 5px;
-    transition: transform 0.3s ease; /* transição no estado normal */
+    transition: transform 0.3s ease;
 }
 .quadro-termos ul li:hover {
     transform: translateY(-6px);
 }
-
 /* ================================================
    PREÇOS
 ================================================ */
@@ -290,10 +255,6 @@ nav .fa-solid {
     border-radius: 8px;
     border: 6px solid var(--marron-escuro);
 }
-
-/* ================================================
-   IMAGEM DE EXEMPLO (miniaturas nas tabelas)
-================================================ */
 .miniatura {
     width: 400px;
     max-width: 100%;
@@ -304,36 +265,10 @@ nav .fa-solid {
 }
 
 /* ================================================
-   CONTATOS — ícones de redes sociais
-================================================ */
-.social-icon {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-    width: 100%;
-}
-.social-icon a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: var(--branco2);
-    transition: transform 0.3s ease; /* transição no estado normal */
-}
-.social-icon i {
-    font-size: 2.5rem;
-    display: block;
-}
-.social-icon a:hover i {
-    transform: translateY(-10px);
-}
-/* ================================
    FLIP CARDS
-================================ */
-
-/* container dos 3 cards lado a lado */
+   .flip-card.virado → classe adicionada pelo JS
+   ao clicar, substituindo o hover
+================================================ */
 .flip-cards-grid {
     display: flex;
     gap: 24px;
@@ -343,10 +278,11 @@ nav .fa-solid {
 }
 .flip-card {
     width: 500px;
-    aspect-ratio: 4/3;  /* ← altura calculada automaticamente */
-    height: auto;        /* ← remove a altura fixa */
+    aspect-ratio: 4/3;
+    height: auto;
     perspective: 1000px;
     flex-shrink: 0;
+    cursor: pointer;
 }
 .flip-card-inner {
     width: 100%;
@@ -355,23 +291,19 @@ nav .fa-solid {
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
 }
-
-/* ao passar o mouse, gira 180 graus */
-.flip-card:hover .flip-card-inner {
+/* gira ao clicar (classe adicionada pelo JS) */
+.flip-card.virado .flip-card-inner {
     transform: rotateY(180deg);
 }
-
-/* frente e verso — posicionados um em cima do outro */
 .flip-card-frente,
 .flip-card-verso {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    backface-visibility: hidden; /* ← esconde o lado de trás quando virado */
+    backface-visibility: hidden;
     overflow: hidden;
 }
-
 /* FRENTE */
 .flip-card-frente {
     background-color: var(--marron-escuro);
@@ -389,7 +321,7 @@ nav .fa-solid {
     border-radius: 12px;
 }
 .flip-label {
-    position: relative; /* ← fica na frente da imagem */
+    position: relative;
     z-index: 1;
     background: rgba(38, 20, 16, 0.85);
     color: var(--branco2);
@@ -399,12 +331,11 @@ nav .fa-solid {
     width: 100%;
     text-align: center;
 }
-
 /* VERSO */
 .flip-card-verso {
     background-color: var(--marron-escuro);
     border: 2px solid var(--laranja-lucky);
-    transform: rotateY(180deg); /* ← começa virado, aparece quando o card gira */
+    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -442,31 +373,49 @@ nav .fa-solid {
     text-align: center;
 }
 /* ================================================
-   RESPONSIVIDADE — telas menores que 600px
-   
-   @media only screen and (max-width: 600px)
-   significa: "aplique esses estilos SOMENTE em
-   telas com largura máxima de 600px" (celulares)
+   CONTATOS
+================================================ */
+.social-icon {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    width: 100%;
+}
+.social-icon a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--branco2);
+}
+.social-icon i {
+    font-size: 2.5rem;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.social-icon a:hover i {
+    transform: translateY(-10px);
+}
+
+/* ================================================
+   RESPONSIVIDADE — max-width: 600px (celular)
 ================================================ */
 @media only screen and (max-width: 600px) {
 
     h1 {
         font-size: 20px;
     }
-    /* FIX: seletor corrigido — era nav i .fa-solid .fa-bars (errado) */
     nav .fa-bars {
         cursor: pointer;
     }
-
-    /* Ícone hambúrguer aparece no mobile */
     nav .fa-solid {
         display: block;
-        font-size: 25px; /* FIX: adicionada unidade px */
+        font-size: 25px;
         cursor: pointer;
         color: var(--branco2);
     }
-    /* Menu deslizante: começa fora da tela (right: -900px)
-       e desliza pra dentro quando abrirmenu() é chamado */
     nav ul {
         background-color: var(--marron-escuro);
         position: fixed;
@@ -483,7 +432,6 @@ nav .fa-solid {
         display: block;
         margin: 25px;
     }
-    /* Ícone de fechar (X) dentro do menu */
     nav ul .fa-solid {
         position: absolute;
         top: 25px;
@@ -501,14 +449,13 @@ nav .fa-solid {
         height: 200px;
     }
     .flip-cards-grid {
-        flex-direction: column; /* ← empilha no celular */
+        flex-direction: column;
         align-items: center;
     }
     .flip-card {
         width: 90%;
         max-width: 340px;
-        aspect-ratio: 16/9; /* ← mantém a proporção no celular também */
+        aspect-ratio: 16/9;
         height: auto;
     }
 }
-

@@ -47,17 +47,17 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="quadro-arte">
-                                <img src="imagens/Rhensky treinando.png" alt="Personagem furry em pose de treino">
+                                <img src="imagens/Rhensky treinando.png" alt="Tubarão furry em pose de treino">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="quadro-arte">
-                                <img src="imagens/43 Sem Título3_20250514094103.png" alt="Arte digital furry">
+                                <img src="imagens/43 Sem Título3_20250514094103.png" alt="Passaro em roupas de mago">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="quadro-arte">
-                                <img src="imagens/treino-FullColors.png" alt="Arte full colors">
+                                <img src="imagens/treino-FullColors.png" alt="Raposa defendendo uum gol">
                             </div>
                         </div>
                     </div>
@@ -80,13 +80,11 @@
                     <br>
                     <h2 class="subtitulo">🚫 Não Faço</h2>
                     <ul>
-                        <li>🚫 Feral (não-antropomórfico)</li>
+                        <li>🚫 NSFW feral (não-antropomórfico)</li>
                         <li>🚫 Gore extremo / Vore</li>
                         <li>🚫 NSFW CUB</li>
-                        <li>🚫 Underage + NSFW</li>
                         <li>🚫 Personagens de terceiros sem autorização</li>
                         <li>🚫 Fetiches estranhos (waterspot, scat, entre outros)</li>
-                        <li>🚫 NSFW com veículos</li>
                     </ul>
                     <p>Ainda possui alguma dúvida? Vá na guia de contatos e me chama no pv! 🦊</p>
                     <p>Meu tempo para fazer as comissões pode variar com o decorrer da minha rotina, meu prazo mínimo para completa-lás é de 3/5 semanas.</p>
@@ -97,7 +95,6 @@
                 <p>O preço das comissões pode sofrer variações de acordo com a quantidade de detalhes do desenho e a complexidade do oc/fursona</p>
                 <br>
                 <div class="borda-preta">
-                    <h2 class="subtitulo">💸 Tabela de Preços</h2>
                     <br>
                     <div class="quadro-precos">
                         <div class="linha cabecalho">
@@ -156,6 +153,9 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="quadro-extra">
+
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +222,38 @@
                 600: { slidesPerView: 2, spaceBetween: 20 },
                 900: { slidesPerView: 3, spaceBetween: 30 },
             },
+        });
+    </script>
+    <script>
+        // Menu mobile
+        var menu = document.getElementById("menu");
+        function abrirmenu() { menu.style.right = "0"; }
+        function fecharmenu() { menu.style.right = "-900px"; }
+        // Swiper — carrossel da galeria
+        new Swiper(".galeria-swiper", {
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                600: { slidesPerView: 2, spaceBetween: 20 },
+                900: { slidesPerView: 3, spaceBetween: 30 },
+            },
+        });
+        // Flip cards — clique para virar
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('virado');
+            });
         });
     </script>
     </div>
