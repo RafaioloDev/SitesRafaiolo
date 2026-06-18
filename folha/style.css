@@ -195,6 +195,34 @@ nav .fa-solid {
     background: var(--branco);
     opacity: 1;
 }
+/* caixa de extras */
+.quadro-extras {
+    background-color: var(--marron-escuro);
+    border-radius: 10px;
+    padding: 20px 30px;
+    margin: 16px 0;
+    text-align: center;
+}
+.quadro-extras ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.quadro-extras ul li {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--marron);
+    border-radius: 8px;
+    padding: 6px 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.quadro-extras ul li span {
+    color: var(--laranja-l2);
+    font-weight: bold;
+}
 /* ================================================
    TERMOS DE SERVIÇO
 ================================================ */
