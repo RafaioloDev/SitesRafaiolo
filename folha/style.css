@@ -65,6 +65,12 @@ footer {
 h2 {
     text-align: center;
 }
+img {
+    height: 80px;
+}
+div {
+    text-align: center;
+}
 /* ================================================
    NAV
    position: fixed → gruda no topo mesmo ao rolar
